@@ -23,7 +23,7 @@ class Indexer:
         self.checkpoint = checkpoint
         self.checkpoint_config = ColBERTConfig.load_from_checkpoint(checkpoint)
 
-        self.config = ColBERTConfig.from_existing(self.checkpoint_config, config, Run().config)
+        self.config = ColBERTConfig.from_existing(Run().config, self.checkpoint_config, config)
         self.configure(checkpoint=checkpoint)
 
     def configure(self, **kw_args):

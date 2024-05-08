@@ -1,6 +1,6 @@
 import os
 import torch
-
+import pdb
 from tqdm import tqdm
 from typing import Union
 
@@ -25,7 +25,7 @@ class Searcher:
         if self.verbose > 1:
             print_memory_stats()
 
-        initial_config = ColBERTConfig.from_existing(config, Run().config)
+        initial_config = ColBERTConfig.from_existing(Run().config, config)
 
         default_index_root = initial_config.index_root_
         index_root = index_root if index_root else default_index_root
@@ -35,8 +35,8 @@ class Searcher:
         self.checkpoint = checkpoint or self.index_config.checkpoint
         self.checkpoint_config = ColBERTConfig.load_from_checkpoint(self.checkpoint)
         self.config = ColBERTConfig.from_existing(self.checkpoint_config, self.index_config, initial_config)
-
         self.collection = Collection.cast(collection or self.config.collection)
+        
         self.pid_list = self.idx2pid(self.config.collection)
         self.configure(checkpoint=self.checkpoint, collection=self.collection)
 

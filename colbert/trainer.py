@@ -7,7 +7,7 @@ from colbert.training.training import train
 
 class Trainer:
     def __init__(self, triples, queries, collection, config=None):
-        self.config = ColBERTConfig.from_existing(config, Run().config)
+        self.config = ColBERTConfig.from_existing(Run().config, config)
 
         self.triples = triples
         self.queries = queries
