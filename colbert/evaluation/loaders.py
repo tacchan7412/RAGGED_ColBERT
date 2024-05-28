@@ -162,6 +162,7 @@ def load_collection(collection_path):
         for line_idx, line in enumerate(f):
             if line_idx % (1000*1000) == 0:
                 print(f'{line_idx // 1000 // 1000}M', end=' ', flush=True)
+                print_message(f'{line_idx // 1000 // 1000}M')
 
             pid, passage, *rest = line.strip('\n\r ').split('\t')
             pid_list.append(pid)
